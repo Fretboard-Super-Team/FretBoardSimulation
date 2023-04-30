@@ -1,11 +1,6 @@
 # Import necessry libraries
 from tkinter import *
-from tkinter import ttk
-
-
-# given i for the string index and j for the note index return a list of notes from the 2d array
-def get_current_notes(all_notes, currently_selected_note_indices):
-    return [all_notes[i][j] for i, j in currently_selected_note_indices]
+from model_v1 import *
 
 def main():
     # Create an instance of tkinter frame or window
@@ -69,47 +64,6 @@ def main():
 
     # Launch GUI
     window.mainloop()
-
-def on_click(i, j, all_notes, notes_label, selected_note_index, previous_selected_note_indices):
-    # Get the 2D array to which the clicked radio button belongs
-    radio_button = all_notes[i][j].button
-    if previous_selected_note_indices[i] == j:
-        selected_note_index.set(-1)
-        previous_selected_note_indices[i] = -1
-    else:
-        selected_note_index.set(j)
-        previous_selected_note_indices[i] = j
-    currently_selected_note_indices = []
-    for string_index, note_index in enumerate(previous_selected_note_indices):
-        if note_index != -1:
-            currently_selected_note_indices.append((note_index, string_index))
-    print("currently_selected_note_indices are: "+str(currently_selected_note_indices))
-    current_notes = get_current_notes(all_notes, currently_selected_note_indices)
-    current_note_names = [note.name for note in current_notes]
-    print(f"Clicked notes: {[f'{a, b}' for a, b in zip(currently_selected_note_indices, current_note_names)]}")
-    notes_label.config(text="Notes: "+", ".join(current_note_names))
-class Note:
-    def __init__(self,
-                 i,
-                 j,
-                 all_notes,
-                 notes_label,
-                 int_var,
-                 selected_notes,
-                 window,
-                 previous_selected_notes,
-                 note_name):
-        # self.int_var =
-        self.name = note_name
-        self.button = Radiobutton(window,
-                                  variable=selected_notes[i],
-                                  value=j,
-                                  command=lambda i=i, j=j: on_click(i,
-                                                                    j,
-                                                                    all_notes,
-                                                                    notes_label,
-                                                                    int_var,
-                                                                    previous_selected_notes))
 
 if __name__ == '__main__':
     main()
