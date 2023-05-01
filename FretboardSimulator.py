@@ -1,12 +1,13 @@
 # Import necessry libraries
 from tkinter import *
 from tkinter import ttk
-import FretBoard
+import model_v1
+import pychord
 
 class FretboardSimulator:
     def __init__(self, lowest_notes):
         # Create an instance of tkinter frame or window
-        self.board = FretBoard.Fretboard(lowest_notes)
+        self.board = model_v1.Fretboard(lowest_notes)
         self.window = Tk()
 
         # Set the geometry of tkinter frame
@@ -79,4 +80,4 @@ class FretboardSimulator:
 
 
 if __name__ == '__main__':
-    FretboardSimulator([0, 11, 20, 23, 35, 47])
+    FretboardSimulator(["E", "A", "D", "G", "B", "E"])

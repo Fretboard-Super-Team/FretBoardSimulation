@@ -1,4 +1,5 @@
 import pychord
+from model_v1 import *
 
 # TODO - Translation - change these note names to be the correct names to match in the pychord library
 

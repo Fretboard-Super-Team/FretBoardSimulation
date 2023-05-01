@@ -63,12 +63,13 @@ class notesarray(circQueue):
         return self.notesqueue.queue
     
     def get(self, pointer):
-        return self.notesqueue.get(pointer)
+        note = self.notesqueue.get(pointer)
+        return note
 
 class stringclass():
 
-    def __init__(self, root):
-        self.root = root
+    def __init__(self):
+        #self.root = root
         self.array = [] * 12
         self.ref = notesarray()
         self.ref.create()
@@ -84,12 +85,16 @@ class stringclass():
             if (self.ref.get(i) == self.root):
                 break
 
+    def returnnote(self, index):
+        return self.array[index]
+    
     def emptystring(self):
         while (self.array):
             self.array.pop()
     
-    def printqueue(self):
+    def printnotes(self):
         print(self.array)
+        return self.array
 
     def printref(self):
         print(self.ref.returnarray())
@@ -97,44 +102,45 @@ class stringclass():
 def get_current_notes(all_notes, currently_selected_note_indices):
     return [all_notes[i][j] for i, j in currently_selected_note_indices]
 
-def on_click(i, j, all_notes, notes_label, selected_note_index, previous_selected_note_indices):
-    # Get the 2D array to which the clicked radio button belongs
-    radio_button = all_notes[i][j].button
-    if previous_selected_note_indices[i] == j:
-        selected_note_index.set(-1)
-        previous_selected_note_indices[i] = -1
-    else:
-        selected_note_index.set(j)
-        previous_selected_note_indices[i] = j
-    currently_selected_note_indices = []
-    for string_index, note_index in enumerate(previous_selected_note_indices):
-        if note_index != -1:
-            currently_selected_note_indices.append((note_index, string_index))
-    print("currently_selected_note_indices are: "+str(currently_selected_note_indices))
-    current_notes = get_current_notes(all_notes, currently_selected_note_indices)
-    current_note_names = [note.name for note in current_notes]
-    print(f"Clicked notes: {[f'{a, b}' for a, b in zip(currently_selected_note_indices, current_note_names)]}")
-    notes_label.config(text="Notes: "+", ".join(current_note_names))
+# TODO - Translation - change these note names to be the correct names to match in the pychord library
 
-class Note:
+number_of_strings = 6
+
+class Fretboard:
     def __init__(self,
-                 i,
-                 j,
-                 all_notes,
-                 notes_label,
-                 int_var,
-                 selected_notes,
-                 window,
-                 previous_selected_notes,
-                 note_name):
-        self.name = note_name
-        self.button = Radiobutton(window,
-                                  variable=selected_notes[i],
-                                  value=j,
-                                  command=lambda i=i, j=j: on_click(i,
-                                                                    j,
-                                                                    all_notes,
-                                                                    notes_label,
-                                                                    int_var,
-                                                                    previous_selected_notes))
+                 desired_tunings):
+        self.strings = [stringclass() for i in range(number_of_strings)]
+        for i, each in enumerate(desired_tunings):
+            self.strings[i].setroot(each)
+            self.strings[i].fillnotes()
+
+
+    def play_chord(self, notes_list):
+        note_names = []
+        note_indices = []
+        # note_index is an index that tells us what number between 0 and 11 has been selected
+        for i, note_index in enumerate(notes_list):
+            if note_index is None:
+                continue
+            # i is the string index
+            note_indices.append(self.strings[i].returnnote(note_index).index)
+            # list of corresponding note names based on mapping note indices list to notes list
+            # collect notes into the note_names list using append
+            note_names.append(self.strings[i].returnnote(note_index))
+        print(note_names)
+
+        # TODO - TRANSLATION
+        # Feed note_names list into pychord package to return chord name
+        # chord = pychord.find_chords_from_notes(note_names)
+        # print(chord, note_names, note_indices)
+        return None, note_names, note_indices
+        # get rid of line above and replace with line below once chords and notes are translated correctly using pychord
+        # return chord, note_names, note_indices
+
+    # this list comprehension returns the two dimensional list of notes representing the current tuning
+    def all_notes(self):
+        all_notes = []
+        for each in self.strings:
+            all_notes.append(each.printnotes())
+        return all_notes
 
