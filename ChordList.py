@@ -7,7 +7,6 @@ import FretboardSimulator
 # All of the chord lists are in alphabetical order, so the user input can be easily sorted.
 all_possible_chords = []
 
-# Major Triads #
 c_major = ['C', 'E', 'G']
 all_possible_chords.append(c_major)
 c_sharp_major = ['C#', 'F', 'G#'] # e# is enharmonically spelled
@@ -148,13 +147,47 @@ all_possible_chords.append(a_sharp_minor_7)
 b_minor_7 = ['A', 'B', 'D', 'F#']
 all_possible_chords.append(b_minor_7)
 
+chordnameslist = []
+chordnameslist.append("c_major")
+chordnameslist.append("c_sharp_major")
+chordnameslist.append("d_major")
+chordnameslist.append("d_sharp_major")
+chordnameslist.append("e_major")
+chordnameslist.append("f_major")
+chordnameslist.append("f_sharp_major")
+chordnameslist.append("g_major")
+chordnameslist.append("g_sharp_major")
+chordnameslist.append("a_major")
+chordnameslist.append("a_sharp_major")
+chordnameslist.append("b_major")
+
+class Chord:
+    def __init__(self, chordname, notelist):
+        self.chordname = chordname
+        self.notelist = notelist
+
+    def checkchord(self, input):
+        if input ==  self.notelist:
+            return self.chordname
+        else :
+            return
+
+# Major Triads #
+
+
 
 # Creating the class that will check the chords
 class ChordList:
+
+    def __init__(self):
+        self.chordlist = [Chord() for i in enumerate(all_possible_chords)]
+        for i, each in all_possible_chords:
+            name = chordnameslist[i]
+            self.chordlist[i] = Chord(each, name)
+
     def check_input_for_chords(self, input):
-        for chord in [x for x in all_possible_chords]:
-            if input == chord:
-                return str(chord)
+        for chord in self.chordlist:
+            return chord.checkchord(input)
 
 
 
