@@ -40,7 +40,7 @@ class FretboardSimulator:
             self.selected_notes.append(IntVar())
             self.previous_selected_notes[i] = 0
             for j, note in enumerate(string):
-                print(j)
+                #print(j)
                 self.all_notes[i][j] = \
                     Radiobutton(self.window,
                                 variable=self.selected_notes[i],
@@ -109,7 +109,10 @@ class FretboardSimulator:
         print(f"Clicked notes: {[f'{a, b}' for a, b in zip(currently_selected_note_indices, note_names)]}")
         notes_label.config(text="Notes: "+", ".join(note_names))
 
-    print(model_v1.returnnote(0, 4))
+    def shownote(self):
+        print(self.board.returnnote(0, 0))
+
 
 if __name__ == '__main__':
-    FretboardSimulator(["E", "A", "D", "G", "B", "E"])
+    fret = FretboardSimulator(["E", "A", "D", "G", "B", "E"])
+    fret.shownote()

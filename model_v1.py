@@ -93,7 +93,7 @@ class stringclass():
             self.array.pop()
     
     def printnotes(self):
-        print(self.array)
+        #print(self.array)
         return self.array
 
     def printref(self):
@@ -130,7 +130,7 @@ class Fretboard:
             # list of corresponding note names based on mapping note indices list to notes list
             # collect notes into the note_names list using append
             note_names.append(self.strings[i].returnnote(note_index))
-        print(note_names)
+        #print(note_names)
 
         # TODO - TRANSLATION
         # Feed note_names list into pychord package to return chord name
