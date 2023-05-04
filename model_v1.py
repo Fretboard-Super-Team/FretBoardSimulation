@@ -114,6 +114,9 @@ class Fretboard:
             self.strings[i].setroot(each)
             self.strings[i].fillnotes()
 
+    def returnstrings(self, strnum):
+        return self.strings[strnum]
+
 
     def play_chord(self, notes_list):
         note_names = []
