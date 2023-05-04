@@ -85,7 +85,7 @@ class stringclass():
             if (self.ref.get(i) == self.root):
                 break
 
-    def returnnote(self, index):
+    def returnsnote(self, index):
         return self.array[index]
     
     def emptystring(self):
@@ -113,6 +113,9 @@ class Fretboard:
         for i, each in enumerate(desired_tunings):
             self.strings[i].setroot(each)
             self.strings[i].fillnotes()
+
+    def returnnote(self, strnum, noteindex):
+        return self.strings[strnum].returnsnote(noteindex)
 
 
     def play_chord(self, notes_list):
