@@ -39,11 +39,14 @@ class FretboardSimulator:
             self.selected_notes.append(IntVar())
             self.previous_selected_notes[i] = 0
             for j, note in enumerate(string):
+                # create Id nu ber by combining the string index and note index
+                id_number = f"{i}-{j}"
                 print(j)
                 self.all_notes[i][j] = \
                     Radiobutton(self.window,
                                 variable=self.selected_notes[i],
                                 value=j,
+                                text = id_number,
                                 command=lambda i=i, j=j:
                                 self.on_click(i,
                                               j,
@@ -54,6 +57,36 @@ class FretboardSimulator:
                 self.all_notes[i][j].grid(row=i + 1, column=j, padx=30, pady=4)
             self.previous_selected_notes[i] = -1
             self.selected_notes[i].set(-1)
+
+        # Chord Menu
+
+        menu_bar = Menu(self.window)
+        self.window.config(menu=menu_bar)
+
+        chords_menu = Menu(menu_bar, tearoff=0)
+        menu_bar.add_cascade(label="Chords", menu=chords_menu)
+
+        major_menu = Menu(chords_menu, tearoff=0)
+        chords_menu.add_cascade(label="Major Chords", menu=major_menu)
+
+        major_menu.add_command(label="A")
+        major_menu.add_command(label="B")
+        major_menu.add_command(label="C")
+        major_menu.add_command(label="D")
+        major_menu.add_command(label="E")
+        major_menu.add_command(label="F")
+        major_menu.add_command(label="G")
+
+        minor_menu = Menu(chords_menu, tearoff=0)
+        chords_menu.add_cascade(label="Minor Chords", menu=minor_menu)
+
+        minor_menu.add_command(label="Am")
+        minor_menu.add_command(label="Bm")
+        minor_menu.add_command(label="Cm")
+        minor_menu.add_command(label="Dm")
+        minor_menu.add_command(label="Em")
+        minor_menu.add_command(label="Fm")
+        minor_menu.add_command(label="Gm")
 
         # Launch GUI
         self.window.mainloop()
@@ -77,6 +110,7 @@ class FretboardSimulator:
         chord, note_names, note_indices = self.board.play_chord(currently_selected_note_indices)
         print(f"Clicked notes: {[f'{a, b}' for a, b in zip(currently_selected_note_indices, note_names)]}")
         notes_label.config(text="Notes: "+", ".join(note_names))
+
 
 
 if __name__ == '__main__':
