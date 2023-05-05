@@ -29,7 +29,7 @@ class FretboardSimulator:
         self.notes_label.grid(row=10, column=1, columnspan=4, pady=10)
 
         # create 6 strings with 12 notes in each
-        self.all_notes = [[None for _ in range(12)] for _ in range(6)]
+        self.all_notes = [[None for _ in range(13)] for _ in range(6)]
 
         # create integer values for notes
         self.selected_notes = []
