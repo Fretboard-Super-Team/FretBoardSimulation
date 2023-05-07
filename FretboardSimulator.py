@@ -13,7 +13,11 @@ class FretboardSimulator:
 
         # Set the geometry of tkinter frame
         #window.geometry("700x350")
+
+        # Set the background image
         self.window.title("Fretboard Simulator")
+        fretboard_image = PhotoImage(file= "Fretboard.PNG")
+        self.background = Label(image=fretboard_image).grid(row=1, column=1, columnspan=13, rowspan=7)
 
         # Create Label for title
         self.program_title = Label(text="Guitar Fretboard Simulator V1.0", font="Helvetica 18 bold")
@@ -40,11 +44,14 @@ class FretboardSimulator:
             self.selected_notes.append(IntVar())
             self.previous_selected_notes[i] = 0
             for j, note in enumerate(string):
-                #print(j)
+                # create Id nu ber by combining the string index and note index
+                id_number = f"{i}-{j}"
+                print(j)
                 self.all_notes[i][j] = \
                     Radiobutton(self.window,
                                 variable=self.selected_notes[i],
                                 value=j,
+                                text = id_number,
                                 command=lambda i=i, j=j:
                                 self.on_click(i,
                                               j,
@@ -52,39 +59,39 @@ class FretboardSimulator:
                                               self.notes_label,
                                               self.selected_notes[i],
                                               self.previous_selected_notes))
-                self.all_notes[i][j].grid(row=i + 1, column=j, padx=30, pady=4)
+                self.all_notes[i][j].grid(row=i + 2, column=j, padx=22, pady=5)
             self.previous_selected_notes[i] = -1
             self.selected_notes[i].set(-1)
 
-            # Chords Menu
+        # Chord Menu
 
-            menu_bar = Menu(self.window)
-            self.window.config(menu=menu_bar)
+        menu_bar = Menu(self.window)
+        self.window.config(menu=menu_bar)
 
-            chords_menu = Menu(menu_bar)
-            menu_bar.add_cascade(label="Chords", menu=chords_menu)
+        chords_menu = Menu(menu_bar, tearoff=0)
+        menu_bar.add_cascade(label="Chords", menu=chords_menu)
 
-            major_menu = Menu(chords_menu)
-            chords_menu.add_cascade(label="Major Chords", menu=major_menu)
+        major_menu = Menu(chords_menu, tearoff=0)
+        chords_menu.add_cascade(label="Major Chords", menu=major_menu)
 
-            major_menu.add_command(label="A")
-            major_menu.add_command(label="B")
-            major_menu.add_command(label="C")
-            major_menu.add_command(label="D")
-            major_menu.add_command(label="E")
-            major_menu.add_command(label="F")
-            major_menu.add_command(label="G")
+        major_menu.add_command(label="A")
+        major_menu.add_command(label="B")
+        major_menu.add_command(label="C")
+        major_menu.add_command(label="D")
+        major_menu.add_command(label="E")
+        major_menu.add_command(label="F")
+        major_menu.add_command(label="G")
 
-            minor_menu = Menu(chords_menu)
-            chords_menu.add_cascade(label="Minor Chords", menu=minor_menu)
+        minor_menu = Menu(chords_menu, tearoff=0)
+        chords_menu.add_cascade(label="Minor Chords", menu=minor_menu)
 
-            minor_menu.add_command(label="Am")
-            minor_menu.add_command(label="Bm")
-            minor_menu.add_command(label="Cm")
-            minor_menu.add_command(label="Dm")
-            minor_menu.add_command(label="Em")
-            minor_menu.add_command(label="Fm")
-            minor_menu.add_command(label="Gm")
+        minor_menu.add_command(label="Am")
+        minor_menu.add_command(label="Bm")
+        minor_menu.add_command(label="Cm")
+        minor_menu.add_command(label="Dm")
+        minor_menu.add_command(label="Em")
+        minor_menu.add_command(label="Fm")
+        minor_menu.add_command(label="Gm")
 
         # Launch GUI
         self.window.mainloop()
