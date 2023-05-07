@@ -2,7 +2,8 @@
 from tkinter import *
 from tkinter import ttk
 import model_v1
-import pychord
+import FretBoard
+import ChordList
 
 class FretboardSimulator:
     def __init__(self, lowest_notes):
@@ -24,12 +25,12 @@ class FretboardSimulator:
 
         # Create Labels for chord and note indicators
         self.chord_label = Label(text="Chord: ")
-        self.chord_label.grid(row=9, column=1, columnspan=4, pady=10)
+        self.chord_label.grid(row=7, column=1, columnspan=4, pady=10)
         self.notes_label = Label(text="Notes: ")
-        self.notes_label.grid(row=10, column=1, columnspan=4, pady=10)
+        self.notes_label.grid(row=8, column=1, columnspan=4, pady=10)
 
         # create 6 strings with 12 notes in each
-        self.all_notes = [[None for _ in range(13)] for _ in range(6)]
+        self.all_notes = [[None for _ in range(12)] for _ in range(6)]
 
         # create integer values for notes
         self.selected_notes = []
@@ -114,8 +115,32 @@ class FretboardSimulator:
         chord, note_names, note_indices = self.board.play_chord(currently_selected_note_indices)
         print(f"Clicked notes: {[f'{a, b}' for a, b in zip(currently_selected_note_indices, note_names)]}")
         notes_label.config(text="Notes: "+", ".join(note_names))
-
-
+       
+        
+       
+        # creating the list of note names that can be used to determine the chord in ChordList
+        unique_note_names_list = list(set(note_names))
+        unique_note_names_list.sort()
+        print("A unique list of the selected notes"+str(unique_note_names_list))
+            
+            
+        #try:
+         
+        chord_name = ChordList.ChordList().check_input_for_chords(unique_note_names_list)
+        self.chord_label.config(text="Chord: " + chord_name)
+        #except:
+        #    self.chord_label.config(text="""Not a valid chord! Select a note for each string, or use the drop down menu for chord recommendations.
+         #                               The simulator can map triads and simple 7th chords. It's possible your selected notes make a chord too complicated for the currect version!""")
+        
+        
+        
+        
+        
+    def shownote(self):
+        print(self.board.returnnote(0, 0))
+        
+        
 
 if __name__ == '__main__':
-    FretboardSimulator(["E", "A", "D", "G", "B", "E"])
+    fret = FretboardSimulator(["E", "A", "D", "G", "B", "E"])
+    fret.shownote()
