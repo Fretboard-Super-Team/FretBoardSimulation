@@ -17,7 +17,7 @@ class FretboardSimulator:
 
         # Set the background image
         self.window.title("Fretboard Simulator")
-        fretboard_image = PhotoImage(file= "Fretboard.PNG")
+        fretboard_image = PhotoImage(file = "Fretboard.PNG")
         self.background = Label(image=fretboard_image).grid(row=1, column=1, columnspan=13, rowspan=7)
 
         # Create Label for title
@@ -66,38 +66,57 @@ class FretboardSimulator:
 
         # Chord Menu
 
+        # Enable menu tab "Chords" to be part of the window as a dropdown menu.
         menu_bar = Menu(self.window)
         self.window.config(menu=menu_bar)
 
         chords_menu = Menu(menu_bar, tearoff=0)
         menu_bar.add_cascade(label="Chords", menu=chords_menu)
 
+        # Have two dropdown menus, major and minor
         major_menu = Menu(chords_menu, tearoff=0)
         chords_menu.add_cascade(label="Major Chords", menu=major_menu)
 
-        major_menu.add_command(label="a_major")
-        major_menu.add_command(label="a_sharp_major")
-        major_menu.add_command(label="b_major")
+        major_menu.add_command(label="a_major", command=lambda name="a_major": self.selectchord(name))
+        major_menu.add_command(label="a_sharp_major", command=lambda name="a_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="b_major", command=lambda name="b_major": self.selectchord(name))
+        
         major_menu.add_command(label="c_major", command=lambda name="c_major": self.selectchord(name))
-        major_menu.add_command(label="c_sharp_major")
-        major_menu.add_command(label="d_major")
-        major_menu.add_command(label="d_sharp_major")
-        major_menu.add_command(label="e_major")
-        major_menu.add_command(label="f_major")
-        major_menu.add_command(label="f_sharp_major")
-        major_menu.add_command(label="g_major")
-        major_menu.add_command(label="g_sharp_major")
+        major_menu.add_command(label="c_sharp_major", command=lambda name="c_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="d_major", command=lambda name="d_major": self.selectchord(name))
+        major_menu.add_command(label="d_sharp_major", command=lambda name="d_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="e_major", command=lambda name="e_major": self.selectchord(name))
+        
+        major_menu.add_command(label="f_major", command=lambda name="f_major": self.selectchord(name))
+        major_menu.add_command(label="f_sharp_major", command=lambda name="f_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="g_major", command=lambda name="g_major": self.selectchord(name))
+        major_menu.add_command(label="g_sharp_major", command=lambda name="g_sharp_major": self.selectchord(name))
 
         minor_menu = Menu(chords_menu, tearoff=0)
         chords_menu.add_cascade(label="Minor Chords", menu=minor_menu)
 
-        minor_menu.add_command(label="Am")
-        minor_menu.add_command(label="Bm")
-        minor_menu.add_command(label="Cm")
-        minor_menu.add_command(label="Dm")
-        minor_menu.add_command(label="Em")
-        minor_menu.add_command(label="Fm")
-        minor_menu.add_command(label="Gm")
+        minor_menu.add_command(label="a-minor", command=lambda name="a_minor": self.selectchord(name))
+        minor_menu.add_command(label="a_sharp_minor", command=lambda name="a_sharp_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="b-minor", command=lambda name="b_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="c-minor", command=lambda name="c_minor": self.selectchord(name))
+        minor_menu.add_command(label="c_sharp_minor", command=lambda name="c_sharp_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="d-minor", command=lambda name="d_minor": self.selectchord(name))
+        minor_menu.add_command(label="d_sharp_minor", command=lambda name="d_sharp_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="e-minor", command=lambda name="e_minor": self.selectchord(name))
+        
+        minor_menu.add_command(label="f-minor", command=lambda name="f_minor": self.selectchord(name))
+        minor_menu.add_command(label="f_sharp_minor", command=lambda name="f_sharp_minor": self.selectchord(name))
+        
+        minor_menu.add_command(label="g-minor", command=lambda name="g_minor": self.selectchord(name))
+        minor_menu.add_command(label="g_sharp_minor", command=lambda name="g_sharp_minor": self.selectchord(name))
 
         # Launch GUI
         self.window.mainloop()

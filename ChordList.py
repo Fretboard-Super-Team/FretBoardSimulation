@@ -9,7 +9,49 @@ from collections import OrderedDict
 all_possible_chords = []
 
 chord_index_dict = {}
-chord_index_dict["c_major"] = {"Tuple":(0, 3, 2, 0, 1, 0), "Notes": ("E", "C", "C", "G", "C", "E")}
+
+# Major Chords
+
+# Chords are composed of the name, j values for each button used, and notes included in the chord.
+chord_index_dict["a_major"] = {"Tuple":(0, 2, 2, 2, 0, 0), "Notes": ("E", "C#", "A", "E", "A", "E")}
+chord_index_dict["a_sharp_major"] = {"Tuple":(1, 3, 3, 0, 1, 0), "Notes": ("F", "D", "A#", "D", "A#", "E")}
+
+chord_index_dict["b_major"] = {"Tuple":(2, 4, 4, 4, 2, 2), "Notes": ("F#", "D#", "B", "F#", "B", "F#")}
+
+chord_index_dict["c_major"] = {"Tuple":(0, 1, 0, 2, 3, 0), "Notes": ("E", "C", "G", "E", "C", "E")}
+chord_index_dict["c_sharp_major"] = {"Tuple":(0, 2, 1, 3, 4, 0), "Notes": ("E", "C#", "G#", "F", "C#", "E")}
+
+chord_index_dict["d_major"] = {"Tuple":(2, 3, 2, 0, 0, 0), "Notes": ("F#", "D", "A", "D", "A", "E")}
+chord_index_dict["d_sharp_major"] = {"Tuple":(3, 4, 3, 1, 0, 0), "Notes": ("G", "D#", "A#", "D#", "A", "E")}
+
+chord_index_dict["e_major"] = {"Tuple":(0, 0, 1, 2, 2, 0), "Notes": ("E", "B", "G#", "E", "B", "E")}
+
+chord_index_dict["f_major"] = {"Tuple":(1, 1, 2, 3, 3, 1), "Notes": ("F", "C", "A", "F", "C", "F")}
+chord_index_dict["f_sharp_major"] = {"Tuple":(2, 2, 3, 4, 0, 0), "Notes": ("F#", "C#", "A#", "F#", "A", "E")}
+
+chord_index_dict["g_major"] = {"Tuple":(3, 0, 0, 0, 2, 3), "Notes": ("G", "B", "G", "D", "B", "G")}
+chord_index_dict["g_sharp_major"] = {"Tuple":(4, 4, 5, 6, 0, 0), "Notes": ("G#", "D#", "C", "G#", "A", "E")}
+
+# Minor Chords
+
+chord_index_dict["a_minor"] = {"Tuple":(0, 1, 2, 2, 0, 0), "Notes": ("E", "C", "A", "E", "A", "E")}
+chord_index_dict["a_sharp_minor"] = {"Tuple":(0, 2, 3, 3, 1, 0), "Notes": ("E", "C#", "A#", "F", "A#", "E")}
+
+chord_index_dict["b_minor"] = {"Tuple":(2, 3, 4, 4, 2, 2), "Notes": ("F#", "D", "B", "F#", "B", "F#")}
+
+chord_index_dict["c_minor"] = {"Tuple":(3, 4, 5, 5, 3, 3), "Notes": ("G", "D#", "C", "G", "C", "G")}
+chord_index_dict["c_sharp_minor"] = {"Tuple":(0, 0, 1, 2, 4, 0), "Notes": ("E", "B", "G#", "E", "C#", "E")}
+
+chord_index_dict["d_minor"] = {"Tuple":(1, 3, 2, 0, 0, 0), "Notes": ("F", "D", "A", "D", "A", "E")}
+chord_index_dict["d_sharp_minor"] = {"Tuple":(2, 4, 3, 1, 0, 0), "Notes": ("F#", "D#", "A#", "D#", "A", "E")}
+
+chord_index_dict["e_minor"] = {"Tuple":(0, 0, 0, 2, 2, 0), "Notes": ("E", "B", "G", "E", "B", "E")}
+
+chord_index_dict["f_minor"] = {"Tuple":(1, 1, 1, 3, 3, 1), "Notes": ("F", "C", "G#", "F", "C", "F")}
+chord_index_dict["f_sharp_minor"] = {"Tuple":(2, 2, 2, 4, 0, 0), "Notes": ("F#", "C#", "A", "F#", "A", "E")}
+
+chord_index_dict["g_minor"] = {"Tuple":(3, 3, 3, 5, 5, 3), "Notes": ("G", "D", "A#", "G", "D", "G")}
+chord_index_dict["g_sharp_minor"] = {"Tuple":(4, 4, 4, 6, 0, 0), "Notes": ("G#", "D#", "B", "G#", "A", "E")}
 
 c_major = ['C', 'E', 'G']
 all_possible_chords.append(c_major)
