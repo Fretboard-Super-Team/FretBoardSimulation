@@ -230,21 +230,26 @@ class Chord:
         if input ==  self.notelist:
             return self.chordname
         else :
-            return
+            return "Chord unavailable"
 
 
 # Creating the class that will check the chords
 class ChordList:
 
     def __init__(self):
-        self.chordlist = [Chord() for i in enumerate(all_possible_chords)]
-        for i, each in all_possible_chords:
-            name = chordnameslist[i]
-            self.chordlist[i] = Chord(each, name)
+        self.chordlist = []
+        for each in all_possible_chords: 
+            name = chordnameslist[all_possible_chords.index(each)]
+            self.chordlist.append(Chord(name, each))
 
     def check_input_for_chords(self, input):
         for chord in self.chordlist:
-            return chord.checkchord(input)
+            if chord.checkchord(input) == "Chord unavailable" and self.chordlist.index(chord) != (len(self.chordlist) -1):
+                continue
+            elif self.chordlist.index(chord) == (len(self.chordlist) -1):
+                return "Chord unavailable"
+            else:
+                return chord.checkchord(input)
 
 
 

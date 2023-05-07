@@ -126,10 +126,10 @@ class Fretboard:
             if note_index is None:
                 continue
             # i is the string index
-            note_indices.append(self.strings[i].returnnote(note_index).index)
+            note_indices.append(self.strings[i].returnsnote(note_index).index)
             # list of corresponding note names based on mapping note indices list to notes list
             # collect notes into the note_names list using append
-            note_names.append(self.strings[i].returnnote(note_index))
+            note_names.append(self.strings[i].returnsnote(note_index))
         #print(note_names)
 
         # TODO - TRANSLATION

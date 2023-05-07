@@ -117,13 +117,13 @@ class FretboardSimulator:
         print("A unique list of the selected notes"+str(unique_note_names_list))
             
             
-        try:
-            chord_name = ChordList.check_input_for_chords(unique_note_names_list)
-            self.chord_label.config(text="Chord: " + chord_name)
-            chord_found = True
-        except:
-            self.chord_label.config(text="""Not a valid chord! Select a note for each string, or use the drop down menu for chord recommendations.
-                                        The simulator can map triads and simple 7th chords. It's possible your selected notes make a chord too complicated for the currect version!""")
+        #try:
+         
+        chord_name = ChordList.ChordList().check_input_for_chords(unique_note_names_list)
+        self.chord_label.config(text="Chord: " + chord_name)
+        #except:
+        #    self.chord_label.config(text="""Not a valid chord! Select a note for each string, or use the drop down menu for chord recommendations.
+         #                               The simulator can map triads and simple 7th chords. It's possible your selected notes make a chord too complicated for the currect version!""")
         
         
         
