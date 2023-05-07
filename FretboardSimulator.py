@@ -4,6 +4,7 @@ from tkinter import ttk
 import model_v1
 import FretBoard
 import ChordList
+from ChordList import chord_index_dict
 
 class FretboardSimulator:
     def __init__(self, lowest_notes):
@@ -16,7 +17,7 @@ class FretboardSimulator:
 
         # Set the background image
         self.window.title("Fretboard Simulator")
-        fretboard_image = PhotoImage(file= "Fretboard.PNG")
+        fretboard_image = PhotoImage(file = "Fretboard.PNG")
         self.background = Label(image=fretboard_image).grid(row=1, column=1, columnspan=13, rowspan=7)
 
         # Create Label for title
@@ -25,9 +26,9 @@ class FretboardSimulator:
 
         # Create Labels for chord and note indicators
         self.chord_label = Label(text="Chord: ")
-        self.chord_label.grid(row=7, column=1, columnspan=4, pady=10)
+        self.chord_label.grid(row=8, column=1, columnspan=4, pady=10)
         self.notes_label = Label(text="Notes: ")
-        self.notes_label.grid(row=8, column=1, columnspan=4, pady=10)
+        self.notes_label.grid(row=9, column=1, columnspan=4, pady=10)
 
         # create 6 strings with 12 notes in each
         self.all_notes = [[None for _ in range(12)] for _ in range(6)]
@@ -45,7 +46,7 @@ class FretboardSimulator:
             self.previous_selected_notes[i] = 0
             for j, note in enumerate(string):
                 # create Id nu ber by combining the string index and note index
-                id_number = f"{i}-{j}"
+                id_number = note
                 print(j)
                 self.all_notes[i][j] = \
                     Radiobutton(self.window,
@@ -59,42 +60,80 @@ class FretboardSimulator:
                                               self.notes_label,
                                               self.selected_notes[i],
                                               self.previous_selected_notes))
-                self.all_notes[i][j].grid(row=i + 2, column=j, padx=22, pady=5)
+                self.all_notes[i][j].grid(row=i + 2, column=j, padx=4, pady=0)
             self.previous_selected_notes[i] = -1
             self.selected_notes[i].set(-1)
 
         # Chord Menu
 
+        # Enable menu tab "Chords" to be part of the window as a dropdown menu.
         menu_bar = Menu(self.window)
         self.window.config(menu=menu_bar)
 
         chords_menu = Menu(menu_bar, tearoff=0)
         menu_bar.add_cascade(label="Chords", menu=chords_menu)
 
+        # Have two dropdown menus, major and minor
         major_menu = Menu(chords_menu, tearoff=0)
         chords_menu.add_cascade(label="Major Chords", menu=major_menu)
 
-        major_menu.add_command(label="A")
-        major_menu.add_command(label="B")
-        major_menu.add_command(label="C")
-        major_menu.add_command(label="D")
-        major_menu.add_command(label="E")
-        major_menu.add_command(label="F")
-        major_menu.add_command(label="G")
+        major_menu.add_command(label="a_major", command=lambda name="a_major": self.selectchord(name))
+        major_menu.add_command(label="a_sharp_major", command=lambda name="a_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="b_major", command=lambda name="b_major": self.selectchord(name))
+        
+        major_menu.add_command(label="c_major", command=lambda name="c_major": self.selectchord(name))
+        major_menu.add_command(label="c_sharp_major", command=lambda name="c_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="d_major", command=lambda name="d_major": self.selectchord(name))
+        major_menu.add_command(label="d_sharp_major", command=lambda name="d_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="e_major", command=lambda name="e_major": self.selectchord(name))
+        
+        major_menu.add_command(label="f_major", command=lambda name="f_major": self.selectchord(name))
+        major_menu.add_command(label="f_sharp_major", command=lambda name="f_sharp_major": self.selectchord(name))
+        
+        major_menu.add_command(label="g_major", command=lambda name="g_major": self.selectchord(name))
+        major_menu.add_command(label="g_sharp_major", command=lambda name="g_sharp_major": self.selectchord(name))
 
         minor_menu = Menu(chords_menu, tearoff=0)
         chords_menu.add_cascade(label="Minor Chords", menu=minor_menu)
 
-        minor_menu.add_command(label="Am")
-        minor_menu.add_command(label="Bm")
-        minor_menu.add_command(label="Cm")
-        minor_menu.add_command(label="Dm")
-        minor_menu.add_command(label="Em")
-        minor_menu.add_command(label="Fm")
-        minor_menu.add_command(label="Gm")
+        minor_menu.add_command(label="a-minor", command=lambda name="a_minor": self.selectchord(name))
+        minor_menu.add_command(label="a_sharp_minor", command=lambda name="a_sharp_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="b-minor", command=lambda name="b_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="c-minor", command=lambda name="c_minor": self.selectchord(name))
+        minor_menu.add_command(label="c_sharp_minor", command=lambda name="c_sharp_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="d-minor", command=lambda name="d_minor": self.selectchord(name))
+        minor_menu.add_command(label="d_sharp_minor", command=lambda name="d_sharp_minor": self.selectchord(name))
+
+        minor_menu.add_command(label="e-minor", command=lambda name="e_minor": self.selectchord(name))
+        
+        minor_menu.add_command(label="f-minor", command=lambda name="f_minor": self.selectchord(name))
+        minor_menu.add_command(label="f_sharp_minor", command=lambda name="f_sharp_minor": self.selectchord(name))
+        
+        minor_menu.add_command(label="g-minor", command=lambda name="g_minor": self.selectchord(name))
+        minor_menu.add_command(label="g_sharp_minor", command=lambda name="g_sharp_minor": self.selectchord(name))
 
         # Launch GUI
         self.window.mainloop()
+
+    def selectchord(self, name):
+        for i, j in enumerate(chord_index_dict[name]["Tuple"]):
+            self.selected_notes[i].set(j)
+        note_names = chord_index_dict[name]["Notes"]
+        self.notes_label.config(text="Notes: "+", ".join(note_names))
+        unique_note_names_list = list(set(note_names))
+        unique_note_names_list.sort()
+        print("A unique list of the selected notes"+str(unique_note_names_list))
+        chord_name = ChordList.ChordList().check_input_for_chords(unique_note_names_list)
+        self.chord_label.config(text="Chord: " + chord_name)
+        print("selectchord is working")
+        print(name)
+    
 
     def on_click(self, i, j, all_notes, notes_label, selected_note_index, previous_selected_note_indices):
         # Get the 2D array to which the clicked radio button belongs
@@ -132,15 +171,11 @@ class FretboardSimulator:
         #    self.chord_label.config(text="""Not a valid chord! Select a note for each string, or use the drop down menu for chord recommendations.
          #                               The simulator can map triads and simple 7th chords. It's possible your selected notes make a chord too complicated for the currect version!""")
         
-        
-        
-        
-        
     def shownote(self):
         print(self.board.returnnote(0, 0))
         
         
 
 if __name__ == '__main__':
-    fret = FretboardSimulator(["E", "A", "D", "G", "B", "E"])
+    fret = FretboardSimulator(["E", "B", "G", "D", "A", "E"])
     fret.shownote()
