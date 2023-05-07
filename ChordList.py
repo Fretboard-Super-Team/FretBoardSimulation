@@ -147,6 +147,8 @@ all_possible_chords.append(a_sharp_minor_7)
 b_minor_7 = ['A', 'B', 'D', 'F#']
 all_possible_chords.append(b_minor_7)
 
+
+# All of the chord NAMES.
 chordnameslist = []
 chordnameslist.append("c_major")
 chordnameslist.append("c_sharp_major")
@@ -161,6 +163,64 @@ chordnameslist.append("a_major")
 chordnameslist.append("a_sharp_major")
 chordnameslist.append("b_major")
 
+chordnameslist.append("c_minor")
+chordnameslist.append("c_sharp_minor")
+chordnameslist.append("d_minor")
+chordnameslist.append("d_sharp_minor")
+chordnameslist.append("e_minor")
+chordnameslist.append("f_minor")
+chordnameslist.append("f_sharp_minor")
+chordnameslist.append("g_minor")
+chordnameslist.append("g_sharp_minor")
+chordnameslist.append("a_minor")
+chordnameslist.append("a_sharp_minor")
+chordnameslist.append("b_minor")
+
+chordnameslist.append("c_dim")
+chordnameslist.append("c_sharp_dim")
+chordnameslist.append("d_dim")
+chordnameslist.append("d_sharp_dim")
+chordnameslist.append("e_dim")
+chordnameslist.append("f_dim")
+chordnameslist.append("f_sharp_dim")
+chordnameslist.append("g_dim")
+chordnameslist.append("g_sharp_dim")
+chordnameslist.append("a_dim")
+chordnameslist.append("a_sharp_dim")
+chordnameslist.append("b_dim")
+
+chordnameslist.append("c_aug")
+chordnameslist.append("c_sharp_aug")
+chordnameslist.append("d_aug")
+chordnameslist.append("d_sharp_aug")
+
+chordnameslist.append("c_major_7")
+chordnameslist.append("c_sharp_major_7")
+chordnameslist.append("d_major_7")
+chordnameslist.append("d_sharp_major_7")
+chordnameslist.append("e_major_7")
+chordnameslist.append("f_major_7")
+chordnameslist.append("f_sharp_major_7")
+chordnameslist.append("g_major_7")
+chordnameslist.append("g_sharp_major_7")
+chordnameslist.append("a_major_7")
+chordnameslist.append("a_sharp_major_7")
+chordnameslist.append("b_major_7")
+
+chordnameslist.append("c_minor_7")
+chordnameslist.append("c_sharp_minor_7")
+chordnameslist.append("d_minor_7")
+chordnameslist.append("d_sharp_minor_7")
+chordnameslist.append("e_minor_7")
+chordnameslist.append("f_minor_7")
+chordnameslist.append("f_sharp_minor_7")
+chordnameslist.append("g_minor_7")
+chordnameslist.append("g_sharp_minor_7")
+chordnameslist.append("a_minor_7")
+chordnameslist.append("a_sharp_minor_7")
+chordnameslist.append("b_minor_7")
+
+
 class Chord:
     def __init__(self, chordname, notelist):
         self.chordname = chordname
@@ -171,9 +231,6 @@ class Chord:
             return self.chordname
         else :
             return
-
-# Major Triads #
-
 
 
 # Creating the class that will check the chords
