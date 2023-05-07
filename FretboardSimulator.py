@@ -26,9 +26,9 @@ class FretboardSimulator:
 
         # Create Labels for chord and note indicators
         self.chord_label = Label(text="Chord: ")
-        self.chord_label.grid(row=7, column=1, columnspan=4, pady=10)
+        self.chord_label.grid(row=8, column=1, columnspan=4, pady=10)
         self.notes_label = Label(text="Notes: ")
-        self.notes_label.grid(row=8, column=1, columnspan=4, pady=10)
+        self.notes_label.grid(row=9, column=1, columnspan=4, pady=10)
 
         # create 6 strings with 12 notes in each
         self.all_notes = [[None for _ in range(12)] for _ in range(6)]
@@ -46,7 +46,7 @@ class FretboardSimulator:
             self.previous_selected_notes[i] = 0
             for j, note in enumerate(string):
                 # create Id nu ber by combining the string index and note index
-                id_number = f"{i}-{j}"
+                id_number = note
                 print(j)
                 self.all_notes[i][j] = \
                     Radiobutton(self.window,
@@ -60,7 +60,7 @@ class FretboardSimulator:
                                               self.notes_label,
                                               self.selected_notes[i],
                                               self.previous_selected_notes))
-                self.all_notes[i][j].grid(row=i + 2, column=j, padx=22, pady=5)
+                self.all_notes[i][j].grid(row=i + 2, column=j, padx=4, pady=0)
             self.previous_selected_notes[i] = -1
             self.selected_notes[i].set(-1)
 
@@ -158,5 +158,5 @@ class FretboardSimulator:
         
 
 if __name__ == '__main__':
-    fret = FretboardSimulator(["E", "A", "D", "G", "B", "E"])
+    fret = FretboardSimulator(["E", "B", "G", "D", "A", "E"])
     fret.shownote()
