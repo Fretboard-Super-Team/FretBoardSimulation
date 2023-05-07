@@ -3,9 +3,13 @@
 import model_v1
 import FretBoard
 import FretboardSimulator
+from collections import OrderedDict
 
 # All of the chord lists are in alphabetical order, so the user input can be easily sorted.
 all_possible_chords = []
+
+chord_index_dict = {}
+chord_index_dict["c_major"] = {"Tuple":(0, 3, 2, 0, 1, 0), "Notes": ("E", "C", "C", "G", "C", "E")}
 
 c_major = ['C', 'E', 'G']
 all_possible_chords.append(c_major)
@@ -231,8 +235,7 @@ class Chord:
             return self.chordname
         else :
             return "Chord unavailable"
-
-
+        
 # Creating the class that will check the chords
 class ChordList:
 
@@ -250,8 +253,3 @@ class ChordList:
                 return "Chord unavailable"
             else:
                 return chord.checkchord(input)
-
-
-
-
-
