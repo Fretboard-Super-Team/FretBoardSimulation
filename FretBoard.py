@@ -1,6 +1,6 @@
-import pychord
 from model_v1 import *
 import FretboardSimulator
+import ChordList
 
 # TODO - Translation - change these note names to be the correct names to match in the pychord library
 

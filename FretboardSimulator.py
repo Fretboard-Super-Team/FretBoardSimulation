@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import ttk
 import model_v1
 import FretBoard
-import pychord
+import ChordList
 
 class FretboardSimulator:
     def __init__(self, lowest_notes):
@@ -108,10 +108,31 @@ class FretboardSimulator:
         chord, note_names, note_indices = self.board.play_chord(currently_selected_note_indices)
         print(f"Clicked notes: {[f'{a, b}' for a, b in zip(currently_selected_note_indices, note_names)]}")
         notes_label.config(text="Notes: "+", ".join(note_names))
-
+       
+        
+       
+        # creating the list of note names that can be used to determine the chord in ChordList
+        unique_note_names_list = list(set(note_names))
+        unique_note_names_list.sort()
+        print("A unique list of the selected notes"+str(unique_note_names_list))
+            
+            
+        try:
+            chord_name = ChordList.check_input_for_chords(unique_note_names_list)
+            self.chord_label.config(text="Chord: " + chord_name)
+            chord_found = True
+        except:
+            self.chord_label.config(text="""Not a valid chord! Select a note for each string, or use the drop down menu for chord recommendations.
+                                        The simulator can map triads and simple 7th chords. It's possible your selected notes make a chord too complicated for the currect version!""")
+        
+        
+        
+        
+        
     def shownote(self):
         print(self.board.returnnote(0, 0))
-
+        
+        
 
 if __name__ == '__main__':
     fret = FretboardSimulator(["E", "A", "D", "G", "B", "E"])
