@@ -12,7 +12,11 @@ class FretboardSimulator:
 
         # Set the geometry of tkinter frame
         #window.geometry("700x350")
+
+        # Set the background image
         self.window.title("Fretboard Simulator")
+        fretboard_image = PhotoImage(file= "Fretboard.PNG")
+        self.background = Label(image=fretboard_image).grid(row=1, column=1, columnspan=13, rowspan=7)
 
         # Create Label for title
         self.program_title = Label(text="Guitar Fretboard Simulator V1.0", font="Helvetica 18 bold")
@@ -20,12 +24,12 @@ class FretboardSimulator:
 
         # Create Labels for chord and note indicators
         self.chord_label = Label(text="Chord: ")
-        self.chord_label.grid(row=7, column=1, columnspan=4, pady=10)
+        self.chord_label.grid(row=9, column=1, columnspan=4, pady=10)
         self.notes_label = Label(text="Notes: ")
-        self.notes_label.grid(row=8, column=1, columnspan=4, pady=10)
+        self.notes_label.grid(row=10, column=1, columnspan=4, pady=10)
 
         # create 6 strings with 12 notes in each
-        self.all_notes = [[None for _ in range(12)] for _ in range(6)]
+        self.all_notes = [[None for _ in range(13)] for _ in range(6)]
 
         # create integer values for notes
         self.selected_notes = []
@@ -54,7 +58,7 @@ class FretboardSimulator:
                                               self.notes_label,
                                               self.selected_notes[i],
                                               self.previous_selected_notes))
-                self.all_notes[i][j].grid(row=i + 1, column=j, padx=30, pady=4)
+                self.all_notes[i][j].grid(row=i + 2, column=j, padx=22, pady=5)
             self.previous_selected_notes[i] = -1
             self.selected_notes[i].set(-1)
 
